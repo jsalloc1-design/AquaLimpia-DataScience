@@ -1,1 +1,54 @@
+# =========================================
+# EXPORTACIÓN DE RESULTADOS
+# =========================================
 
+# Archivo para Área de Operaciones
+operaciones = df[
+    [
+        'fecha_registro',
+        'planta',
+        'caudal_entrada_m3_d',
+        'DBO_entrada_mg_L',
+        'DBO_salida_mg_L',
+        'energia_aeracion_kWh',
+        'lodos_generados_kg_d'
+    ]
+]
+
+operaciones.to_csv(
+    'operaciones.csv',
+    index=False
+)
+
+
+# =========================================
+# Archivo para Gestión Ambiental
+# =========================================
+
+gestion_ambiental = df[
+    [
+        'fecha_registro',
+        'planta',
+        'DBO_salida_mg_L',
+        'cumplimiento_norma'
+    ]
+]
+
+gestion_ambiental.to_csv(
+    'gestion_ambiental.csv',
+    index=False
+)
+
+
+# =========================================
+# GUARDAR DATASET PROCESADO
+# =========================================
+
+from joblib import dump
+
+dump(
+    df,
+    'dataset_procesado.joblib'
+)
+
+print("Archivos exportados correctamente.")
